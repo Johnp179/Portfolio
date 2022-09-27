@@ -22,6 +22,10 @@ const StyledNav = styled.div`
 		font-size:2rem;
 	}
 
+    @media (min-width:1500px){
+		font-size:2.5rem;
+	}
+
 `;
 
 
@@ -30,10 +34,6 @@ const Button = styled.div`
         padding:0.5em;
         color: white;
 
-    }
-
-    &:hover .hover-effect{
-        visibility: visible !important;
     }
 
 `;

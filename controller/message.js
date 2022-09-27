@@ -16,7 +16,6 @@ router.get("/get-all", async(req, res)=> {
  
 router.post("/add", async (req, res)=>{
     const message = new Message(req.body);
-
     try{
         await message.save();
         res.status(201).end();
@@ -25,7 +24,6 @@ router.post("/add", async (req, res)=>{
         console.error(e);
     }
 
-    
 })
 
 

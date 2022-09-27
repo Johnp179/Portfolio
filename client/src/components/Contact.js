@@ -9,7 +9,7 @@ const StyledContact = styled.div`
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	background-color: grey;
+	background-image: ${({ lazyLoadImage }) => `url(${lazyLoadImage})`};
 	background-size:100% 100%;
 	color:white;
 	font-size: 1.2rem;
@@ -78,6 +78,12 @@ const StyledContact = styled.div`
 		h2.success-msg{
 			text-align: center;
 
+		}
+
+		h2.error-msg{
+			text-align: center;
+			color:red;
+
 		} 
 
 	}
@@ -133,7 +139,7 @@ const ErrorLabel = styled.label`
 `;
 
 
-const Contact = forwardRef(({ baseURL }, ref) => {
+const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -150,9 +156,12 @@ const Contact = forwardRef(({ baseURL }, ref) => {
 			case "idle":
 				return <button type="submit">Submit </button>;
 			case "pending":
-				return <LoadingAnimation/>
+				return <LoadingAnimation/>;
+			case "error":
+				return <h2 className="error-msg" >An error occurred, please try again.</h2>;
 			case "fulfilled":
 				return <h2 className="success-msg" >Message sent.</h2>;
+			
 		}
 	};
 
@@ -201,7 +210,7 @@ const Contact = forwardRef(({ baseURL }, ref) => {
 					content: message
 				}),
 			})
-			if(!response.ok) throw {status:response.status};
+			if(!response.ok) throw new Error(`Server responded with status code ${response.status}`)
 			setSendingStatus("fulfilled");
 			setTimeout(() => setSendingStatus("idle"), 2000);
 			setName("");
@@ -210,8 +219,13 @@ const Contact = forwardRef(({ baseURL }, ref) => {
 			setSubmitted(false);
 
 		}catch(error){
-			if(error.status === 500) return console.error("internal server error");
 			console.error(error);
+			setSendingStatus("error");
+			setTimeout(() => setSendingStatus("idle"), 2000);
+			setName("");
+			setEmail("");
+			setMessage("");
+			setSubmitted(false);
 
 		}
 	
@@ -220,7 +234,8 @@ const Contact = forwardRef(({ baseURL }, ref) => {
 
   return (
 
-	<StyledContact  className="background-image" id="contact" ref={ref}>
+	<StyledContact  lazyLoadImage={lazyLoadImage} className="background-image" 
+	id="contact" ref={ref}>
 		<form onSubmit={submitForm}>
 			<h1>Get in touch!</h1>
 

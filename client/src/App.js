@@ -7,6 +7,7 @@ import Contact from "./components/Contact.js";
 import aboutImage from "./images/about.jpeg";
 import projectsImage from "./images/projects.jpg";
 import contactImage from "./images/contact.jpg";
+import lazyLoadImage from "./images/excerpt-lazy-load.png"
 
 
 
@@ -102,7 +103,7 @@ const App = () => {
 			  navbarEffectsObserver.disconnect();
     	}
 
-  	},[])
+  	}, [])
 
 	const aboutRef = useRef();
 	const projectsRef = useRef();
@@ -141,13 +142,9 @@ const App = () => {
   		<>
 			<Nav scrollToElement={scrollToElement} width={navWidth} />
 			<Introduction />
-
-			<About baseURL={baseURL} ref={aboutRef} />
-
-			<Projects ref={projectsRef} />
-		
-			<Contact baseURL={baseURL} ref={contactRef} />
-		
+			<About baseURL={baseURL} ref={aboutRef} lazyLoadImage={lazyLoadImage} />
+			<Projects ref={projectsRef} lazyLoadImage={lazyLoadImage}  />
+			<Contact baseURL={baseURL} ref={contactRef} lazyLoadImage={lazyLoadImage}  />
     	</>
   );
 }

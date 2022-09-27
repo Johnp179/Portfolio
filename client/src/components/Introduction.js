@@ -58,8 +58,8 @@ const Introduction = () => {
 					<h1>John O'Connor</h1>
 					<h2>Web developer</h2>
           			<p>
-						<a href="https://github.com/Johnp179"><FontAwesomeIcon icon={brands('github')}/> </a>
-						<a href="https://www.linkedin.com/in/john-o-connor-9a459277/"><FontAwesomeIcon icon={brands('linkedin')}/> </a>
+						<a href="https://github.com/Johnp179" rel="noreferrer" target="_blank" ><FontAwesomeIcon icon={brands('github')}/> </a>
+						<a href="https://www.linkedin.com/in/john-o-connor-9a459277/" rel="noreferrer" target="_blank" ><FontAwesomeIcon icon={brands('linkedin')}/> </a>
            			</p>
         		</div>
     		</Content>

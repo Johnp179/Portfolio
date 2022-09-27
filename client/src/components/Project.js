@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import styled from 'styled-components';
 
 const StyledProject = styled.div`
@@ -49,12 +46,12 @@ const StyledProject = styled.div`
 
     .details{
         width:100%;
-        height:${({ desciptionHeight }) => desciptionHeight};
+        height:0%;
         background-color:#232b2b;
         color:white;
         display:flex;
+        flex-direction: column;
         justify-content:center;
-        align-items:center;
         position:absolute;
         top:0;
         left:0;
@@ -63,18 +60,7 @@ const StyledProject = styled.div`
         border-radius: inherit;
         padding:0 0.5em;
 
-        button{
-            position: absolute;
-            top:0;
-            right:0.2em;
-            font-size:1.5em;
-            padding:0.3em;
-            background-color: transparent;
-            color:inherit;
-            border:none;
-
-        }
-
+    
 
         .title{
             text-align:center;
@@ -83,7 +69,7 @@ const StyledProject = styled.div`
         }
        
         p{
-            margin:10px 5px;
+            margin:0.5em;
 
             span{
                 font-weight: bold;
@@ -118,38 +104,20 @@ const StyledProject = styled.div`
 `;
 
 
-const Project = ({title, about, techStack, image, gitHub, website}) => {
-
-    const [desciptionHeight, setDescriptionHeight] = useState("0%");
-
-    const isTouchEnabled = () => {
-        return ( 'ontouchstart' in window ) ||( navigator.maxTouchPoints > 0 ) ||
-       ( navigator.msMaxTouchPoints > 0 );
-    }
- 
-    const openProjectDetails = ()=> {
-        isTouchEnabled() && setDescriptionHeight("100%");
-    };
-
-    const closeProjectDetails = ()=> {
-        setDescriptionHeight("0%");
-    };
+const Project = ({ title, about, techStack, image, lazyLoadImage, gitHub, website }) => {
 
     return (
-        <StyledProject desciptionHeight={desciptionHeight}>
-            <img image={image} onClick={openProjectDetails} />
+        <StyledProject >
+            <img src={lazyLoadImage} alt="" image={image} />
             <div className="details">
-                <div>
-                    { isTouchEnabled() && <button onClick={closeProjectDetails} ><FontAwesomeIcon icon={solid("xmark")}/></button>}
-                    <h4 className="title">{title}</h4>
-                    <p><span>About: </span>{about}</p>
-                    <p><span>Stack: </span>{techStack}</p>
-                    <div className="link-container">
-                        <a href={website} target="_blank" >Launch</a>
-                        <a href={gitHub}  target="_blank"  >Github</a>
+                <h4 className="title">{title}</h4>
+                <p><span>About: </span>{about}</p>
+                <p><span>Stack: </span>{techStack}</p>
+                <div className="link-container">
+                    <a href={website} rel="noreferrer" target="_blank" >Launch</a>
+                    <a href={gitHub}  rel="noreferrer" target="_blank"  >Github</a>
                 </div>
             </div>
-        </div>
         </StyledProject >
 
     );

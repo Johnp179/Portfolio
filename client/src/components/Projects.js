@@ -45,32 +45,36 @@ const Container = styled.div`
 `;
 
 
-const Projects = forwardRef((props, ref) => {
+const Projects = forwardRef(({ lazyLoadImage }, ref) => {
 
-    const [projectsList, setProjectslist] = useState([
+    const [projectsList] = useState([
         {
-            title:"Bar-chart generator",
-            about:"Response web app which can be used to generate bar-charts.",
-            techStack:"JavaScript, HTML/CSS",
-            image:barChartImage,
-            gitHub: "https://github.com/Johnp179/bar-chart-generator",
-            website: "https://bar-chart-generator.herokuapp.com",
+            title:"Password Manager",
+            about:"App which can be used to store encrypted passwords.",
+            techStack:"JavaScript, React, HTML/CSS, Node, Express.", 
+            image:passwordManagerImage,
+            lazyLoadImage,
+            gitHub: "https://github.com/Johnp179/securi-pass",
+            website: "https://securi-pass.herokuapp.com",
         },
+  
         {
             title:"Space Game",
-            about:"Desktop game which incoraptes a highscore table and a forum",
-            techStack:"JavaScript, Phaser, HTML/CSS, Node, Express", 
+            about:"Arcade style game which incorporates a high-score table and form.",
+            techStack:"JavaScript, Phaser, HTML/CSS, Node, Express.", 
             image:spaceImage,
+            lazyLoadImage,
             gitHub: "https://github.com/Johnp179/space-game",
             website: "https://space-game2133.herokuapp.com/",
         },
         {
-            title:"Password Manager",
-            about:"App which can be used to store encrypted passwords",
-            techStack:"JavaScript, React, HTML/CSS, Node, Express", 
-            image:passwordManagerImage,
-            gitHub: "https://github.com/Johnp179/securi-pass",
-            website: "",
+            title:"Bar-chart generator",
+            about:"Responsive web app which can be used to generate bar-charts.",
+            techStack:"JavaScript, HTML/CSS, Node, Express.",
+            image:barChartImage,
+            lazyLoadImage,
+            gitHub: "https://github.com/Johnp179/bar-chart-generator",
+            website: "https://bar-chart-generator.herokuapp.com",
         },
     ])
   
@@ -87,6 +91,7 @@ const Projects = forwardRef((props, ref) => {
                         about={project.about}
                         techStack={project.techStack} 
                         image={project.image}
+                        lazyLoadImage={project.lazyLoadImage}
                         gitHub={project.gitHub}
                         website={project.website}
 
