@@ -27,4 +27,17 @@ router.post("/add", async (req, res)=>{
 })
 
 
+router.delete("/delete-all", async(req, res) => {
+
+    try{
+        const deletedCount = await Message.deleteMany({});
+        res.send(deletedCount);
+    }catch(e){
+        res.status(500).end();
+        console.error(e);
+    }
+
+});
+
+
 module.exports = router

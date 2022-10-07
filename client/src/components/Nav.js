@@ -35,35 +35,32 @@ const Button = styled.div`
         color: white;
 
     }
+    &:hover{
+        cursor: pointer;
+    }
+   
+  
 
 `;
 
 
 
 const Nav = ({scrollToElement, width}) => {
-
-
     return (
         <StyledNav width={width}>
             <Button onClick={()=>scrollToElement("about")} >
                 <div className="text">About</div>
                 <NavHoverEffect />
-                
             </Button>
-
             <Button onClick={()=>scrollToElement("projects")}>
                 <div className="text">Projects</div>
                  <NavHoverEffect />
-                
             </Button>
-
             <Button onClick={()=>scrollToElement("contact")}>
                 <div className="text">Contact</div>
                  <NavHoverEffect />
-                
             </Button>
         </StyledNav>
-
     );
 }
 

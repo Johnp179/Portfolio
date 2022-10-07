@@ -119,7 +119,6 @@ const Project = ({ title, about, techStack, image, lazyLoadImage, gitHub, websit
                 </div>
             </div>
         </StyledProject >
-
     );
 }
 

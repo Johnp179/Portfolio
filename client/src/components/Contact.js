@@ -3,7 +3,6 @@ import { useState, forwardRef } from 'react';
 import isEmail from 'validator/lib/isEmail';
 import LoadingAnimation from './Loading-animation';
 
-
 const StyledContact = styled.div`
 	height:100vh;
 	display:flex;
@@ -91,7 +90,6 @@ const StyledContact = styled.div`
 `;
 
 const StyledInput = styled.input`
-
 	display:block;
 	font-size: 1.5em;
 	width:100%;
@@ -110,7 +108,6 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextarea = styled.textarea`
-
 	resize: none;
 	width:100%;
 	height:30vh;
@@ -140,7 +137,6 @@ const ErrorLabel = styled.label`
 
 
 const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
-
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
@@ -151,7 +147,6 @@ const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 	const [sendingStatus, setSendingStatus] = useState("idle");
 
 	const alterDomBasedOnSendingStatus = () => {
-
 		switch(sendingStatus){
 			case "idle":
 				return <button type="submit">Submit </button>;
@@ -160,14 +155,11 @@ const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 			case "error":
 				return <h2 className="error-msg" >An error occurred, please try again.</h2>;
 			case "fulfilled":
-				return <h2 className="success-msg" >Message sent.</h2>;
-			
+				return <h2 className="success-msg" >Message sent.</h2>;	
 		}
 	};
 
-
 	const handleChange = (e) => {
-
 		if(e.target.name === "name"){
 			setName(e.target.value);
 			if(submitted)!e.target.value ? setNameError(true) : setNameError(false);
@@ -183,9 +175,7 @@ const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 		}
 	}
 
-
 	const submitForm = async(e) =>{
-
 		e.preventDefault();
 		if(!submitted){
 			!name && setNameError(true);
@@ -226,32 +216,26 @@ const Contact = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 			setEmail("");
 			setMessage("");
 			setSubmitted(false);
-
 		}
-	
-	
 	}
 
-  return (
+	return (
+		<StyledContact  lazyLoadImage={lazyLoadImage} className="background-image" 
+		id="contact" ref={ref}>
+			<form onSubmit={submitForm}>
+				<h1>Get in touch!</h1>
 
-	<StyledContact  lazyLoadImage={lazyLoadImage} className="background-image" 
-	id="contact" ref={ref}>
-		<form onSubmit={submitForm}>
-			<h1>Get in touch!</h1>
+				<StyledInput placeholder='Name' name="name" value={name} onChange={handleChange} error={nameError} />
+				<ErrorLabel error={nameError}>Please fill this out</ErrorLabel>
 
-			<StyledInput placeholder='Name' name="name" value={name} onChange={handleChange} error={nameError} />
-			<ErrorLabel error={nameError}>Please fill this out</ErrorLabel>
-
-			<StyledInput placeholder='Email' name="email"  value={email} onChange={handleChange} error={emailError} />
-			<ErrorLabel error={emailError} >Invalid email address</ErrorLabel>
-
-			<StyledTextarea placeholder="Message details" name="message" value={message} onChange={handleChange} error={messageError}  />
-			<ErrorLabel error={messageError} >Please fill this out</ErrorLabel>
-
-			{alterDomBasedOnSendingStatus()}
-		</form>
-    </StyledContact>
-
+				<StyledInput placeholder='Email' name="email"  value={email} onChange={handleChange} error={emailError} />
+				<ErrorLabel error={emailError} >Invalid email address</ErrorLabel>
+				
+				<StyledTextarea placeholder="Message details" name="message" value={message} onChange={handleChange} error={messageError}  />
+				<ErrorLabel error={messageError} >Please fill this out</ErrorLabel>
+				{alterDomBasedOnSendingStatus()}
+			</form>
+    	</StyledContact>
   );
 })
 

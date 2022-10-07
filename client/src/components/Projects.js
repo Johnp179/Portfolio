@@ -5,7 +5,6 @@ import spaceImage from "../images/space-game.jpg";
 import passwordManagerImage from "../images/password-manager.webp";
 import Project from './Project.js';
 
-
 const Container = styled.div`
     background-color:grey;
     background-size: 100% 100%;
@@ -79,7 +78,6 @@ const Projects = forwardRef(({ lazyLoadImage }, ref) => {
     ])
   
     
-
     return (
         <Container className="background-image" id="projects" ref={ref} >
             <h1>Projects</h1>
@@ -87,19 +85,10 @@ const Projects = forwardRef(({ lazyLoadImage }, ref) => {
                 {projectsList.map((project, index) => (
                     <Project 
                         key={index}
-                        title={project.title}
-                        about={project.about}
-                        techStack={project.techStack} 
-                        image={project.image}
-                        lazyLoadImage={project.lazyLoadImage}
-                        gitHub={project.gitHub}
-                        website={project.website}
-
+                       {...project}
                     />
                 ))}
             </div>
-     
-     
         </Container>
     );
 })

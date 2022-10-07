@@ -87,14 +87,10 @@ const Skills = styled.div`
 `;
 
 
-
 const About = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
-
 	return (
-
 		<Container lazyLoadImage={lazyLoadImage}  className="background-image" id="about" ref={ref}>
 			<StyledAbout>
-				
 					<h1>About</h1>
 					<div>
 						<p>
@@ -114,10 +110,7 @@ const About = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 						</p>
 						<a href={`${baseURL}downloads/John-CV.pdf`} rel="noreferrer"  target="_blank">View CV</a>  
 					</div>
-				
 			</StyledAbout>
-
-
 			<Skills>
 				<div>JavaScript</div>
 				<div>HTML/CSS</div>
@@ -128,7 +121,6 @@ const About = forwardRef(({ baseURL, lazyLoadImage }, ref) => {
 				<div>MongoDB</div>
 			</Skills>
 		</Container>
-	
 	);
 })
 
