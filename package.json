@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \" npm run client \" ",
     "prebuild": "npm install --prefix client",
     "build": "npm run build --prefix client",
-    "postbuild": "rm -rf node_modules --prefix client"
+    "postbuild": "rm -rf client/node_modules"
   },
   "keywords": [],
   "author": "",
