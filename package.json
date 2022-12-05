@@ -25,5 +25,12 @@
     "concurrently": "^7.3.0",
     "eslint": "^8.20.0",
     "nodemon": "^2.0.19"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 80
   }
 }
